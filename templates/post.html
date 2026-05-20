@@ -102,16 +102,14 @@
             </div>
         </div>
     </div>
-    <div id="postData" style="display:none;" data-post-id="{{ post.id }}" data-post-user-id="{{ post.author.id }}"></div>
 {% endblock content %}
 {% block scripts %}
     <script type="module">
     import { getCurrentUser, getToken } from '/static/js/auth.js';
     import { getErrorMessage, showModal, hideModal } from '/static/js/utils.js';
 
-    const postData = document.getElementById('postData');
-    const postId = parseInt(postData.dataset.postId);
-    const postUserId = parseInt(postData.dataset.postUserId);
+    const postId = {{ post.id }};
+    const postUserId = {{ post.user_id }};
 
     // Show edit/delete buttons only if current user owns this post
     async function checkOwnership() {
